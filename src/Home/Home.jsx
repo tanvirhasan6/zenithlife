@@ -1,59 +1,191 @@
+import React, { useContext, useRef, useState } from 'react';
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+
+import './../styles.css';
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+
+import banner1 from './../assets/slider/insurance-banner-1.jpg'
+import banner2 from './../assets/slider/insurance-banner-2.jpg'
+import banner3 from './../assets/slider/insurance-banner-3.jpg'
+import banner4 from './../assets/slider/insurance-banner-3.jpg'
+import banner5 from './../assets/slider/insurance-banner-3.jpg'
+import banner6 from './../assets/slider/insurance-banner-3.jpg'
+import { LangContext } from '../contexts/LanguageContext';
+import CountUp from 'react-countup';
 
 const Home = () => {
+
+    const { lang } = useContext(LangContext);
+
+    const progressCircle = useRef(null);
+    const progressContent = useRef(null);
+
+    const toBanglaNumerals = (number) => {
+        const bengaliNumerals = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
+        return number.toString().split('').map(digit => bengaliNumerals[parseInt(digit)]).join('');
+    };
+
     return (
-        <div>
+        <div className='mx-auto sm:w-10/12 md:w-9/12 lg:w-8/12'>
 
-            <div className="hero bg-base-200 min-h-screen">
-                <div className="hero-content text-center">
-                    <div className="max-w-md">
-                        <h1 className="text-5xl font-bold">Hello there</h1>
-                        <p className="py-6">
-                            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
-                            quasi. In deleniti eaque aut repudiandae et a id nisi.
-                        </p>
-                        <button className="btn btn-primary">Get Started</button>
-                    </div>
-                </div>
+            <div className={`w-full sm:h-[20vh] md:h-[30vh] lg:h-[40vh] ${lang === 'বাংলা' ? 'flex' : 'hidden'}`}>
+                <Swiper
+                    spaceBetween={30}
+                    centeredSlides={true}
+                    autoplay={{
+                        delay: 5000,
+                        disableOnInteraction: false,
+                    }}
+                    pagination={{
+                        clickable: true,
+                    }}
+                    navigation={false}
+                    modules={[Autoplay, Pagination, Navigation]}
+                    className="mySwiper"
+                >
+                    <SwiperSlide>
+                        <img className='rounded-lg' src={banner1} />
+                    </SwiperSlide>
+                    <SwiperSlide>
+                        <img className='rounded-lg' src={banner2} />
+                    </SwiperSlide>
+                    <SwiperSlide>
+                        <img className='rounded-lg' src={banner3} />
+                    </SwiperSlide>
+                    <SwiperSlide>
+                        <img className='rounded-lg' src={banner4} />
+                    </SwiperSlide>
+                    <SwiperSlide>
+                        <img className='rounded-lg' src={banner5} />
+                    </SwiperSlide>
+                    <SwiperSlide>
+                        <img className='rounded-lg' src={banner6} />
+                    </SwiperSlide>
+
+                </Swiper>
+
+
             </div>
 
-            <div className="carousel w-full">
-                <div id="slide1" className="carousel-item relative w-full">
-                    <img
-                        src="https://img.daisyui.com/images/stock/photo-1625726411847-8cbb60cc71e6.webp"
-                        className="w-full" />
-                    <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-                        <a href="#slide4" className="btn btn-circle">❮</a>
-                        <a href="#slide2" className="btn btn-circle">❯</a>
-                    </div>
-                </div>
-                <div id="slide2" className="carousel-item relative w-full">
-                    <img
-                        src="https://img.daisyui.com/images/stock/photo-1609621838510-5ad474b7d25d.webp"
-                        className="w-full" />
-                    <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-                        <a href="#slide1" className="btn btn-circle">❮</a>
-                        <a href="#slide3" className="btn btn-circle">❯</a>
-                    </div>
-                </div>
-                <div id="slide3" className="carousel-item relative w-full">
-                    <img
-                        src="https://img.daisyui.com/images/stock/photo-1414694762283-acccc27bca85.webp"
-                        className="w-full" />
-                    <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-                        <a href="#slide2" className="btn btn-circle">❮</a>
-                        <a href="#slide4" className="btn btn-circle">❯</a>
-                    </div>
-                </div>
-                <div id="slide4" className="carousel-item relative w-full">
-                    <img
-                        src="https://img.daisyui.com/images/stock/photo-1665553365602-b2fb8e5d1707.webp"
-                        className="w-full" />
-                    <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-                        <a href="#slide3" className="btn btn-circle">❮</a>
-                        <a href="#slide1" className="btn btn-circle">❯</a>
-                    </div>
-                </div>
+
+            <div className='my-10 py-10 rounded-xl shadow-xl' style={{ background: 'rgba(0, 140, 240, 0.05)' }}>
+
+                {
+                    lang === 'বাংলা' ? (
+                        <div className='w-full flex flex-col justify-center items-center gap-6'>
+
+                            <h2 className='font-bold text-xl'>এক নজরে জেনিথ ইসলামি লাইফ</h2>
+
+                            <div className='w-full max-w-screen-xl mx-auto grid place-items-center grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 justify-center items-center px-5 gap-3'>
+
+                                <div className='w-full bg-white flex flex-col justify-center items-center gap-1 shadow-sm p-4 rounded-lg'>
+                                    <img src="" alt="" />
+                                    <div className='flex flex-col justify-start items-start gap-2'>
+                                        <h3 className='font-bold text-md'>গ্রাহক</h3>
+                                        <p className='text-sm'><CountUp start={0} end={14502500} duration={2.75} formattingFn={(value) => toBanglaNumerals(Math.floor(value))} />+</p>
+                                    </div>
+                                </div>
+
+                                <div className='w-full bg-white flex flex-col justify-center items-center gap-1 shadow-sm p-4 rounded-lg'>
+                                    <img src="" alt="" />
+                                    <div className='flex flex-col justify-start items-start gap-2'>
+                                        <h3 className='font-bold text-md'>এসবি দাবী</h3>
+                                        <p className='text-sm'><CountUp start={0} end={114578560} duration={2.75} formattingFn={(value) => toBanglaNumerals(Math.floor(value))} />+</p>
+                                    </div>
+                                </div>
+
+                                <div className='w-full bg-white flex flex-col justify-center items-center gap-1 shadow-sm p-4 rounded-lg'>
+                                    <img src="" alt="" />
+                                    <div className='flex flex-col justify-start items-start gap-2'>
+                                        <h3 className='font-bold text-md'>মৃত্যু দাবী</h3>
+                                        <p className='text-sm'><CountUp start={0} end={114578560} duration={2.75} formattingFn={(value) => toBanglaNumerals(Math.floor(value))} />+</p>
+                                    </div>
+                                </div>
+
+                                <div className='w-full bg-white flex flex-col justify-center items-center gap-1 shadow-sm p-4 rounded-lg'>
+                                    <img src="" alt="" />
+                                    <div className='flex flex-col justify-start items-start gap-2'>
+                                        <h3 className='font-bold text-md'>মেয়াদোত্তীর্ণ দাবী</h3>
+                                        <p className='text-sm'><CountUp start={0} end={114578560} duration={2.75} formattingFn={(value) => toBanglaNumerals(Math.floor(value))} />+</p>
+                                    </div>
+                                </div>
+
+
+                                <div className='w-full bg-white flex flex-col justify-center items-center gap-1 shadow-sm p-4 rounded-lg'>
+                                    <img src="" alt="" />
+                                    <div className='flex flex-col justify-start items-start gap-2'>
+                                        <h3 className='font-bold text-md'>স্বাস্থ্য বীমা দাবী</h3>
+                                        <p className='text-sm'><CountUp start={0} end={114578560} duration={2.75} formattingFn={(value) => toBanglaNumerals(Math.floor(value))} />+</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    )
+                        :
+                        (
+                            <div className='w-full flex flex-col justify-center items-center gap-6'>
+
+                                <h2 className='font-bold text-xl'>Zenith Islami Life At a Glance</h2>
+
+                                <div className='w-full max-w-screen-xl mx-auto grid place-items-center grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 justify-center items-center px-5 gap-3'>
+
+                                    <div className='w-full bg-white flex flex-col justify-center items-center gap-1 shadow-sm p-4 rounded-lg'>
+                                        <img src="" alt="" />
+                                        <div className='flex flex-col justify-start items-start gap-2'>
+                                            <h3 className='font-bold text-md'>Clients</h3>
+                                            <p className='text-sm'><CountUp start={0} end={14502500} duration={2.75} />+</p>
+                                        </div>
+                                    </div>
+
+                                    <div className='w-full bg-white flex flex-col justify-center items-center gap-1 shadow-sm p-4 rounded-lg'>
+                                        <img src="" alt="" />
+                                        <div className='flex flex-col justify-start items-start gap-2'>
+                                            <h3 className='font-bold text-md'>SB Claim</h3>
+                                            <p className='text-sm'><CountUp start={0} end={114578560} duration={2.75} />+</p>
+                                        </div>
+                                    </div>
+
+                                    <div className='w-full bg-white flex flex-col justify-center items-center gap-1 shadow-sm p-4 rounded-lg'>
+                                        <img src="" alt="" />
+                                        <div className='flex flex-col justify-start items-start gap-2'>
+                                            <h3 className='font-bold text-md'>Death Claim</h3>
+                                            <p className='text-sm'><CountUp start={0} end={114578560} duration={2.75} />+</p>
+                                        </div>
+                                    </div>
+
+                                    <div className='w-full bg-white flex flex-col justify-center items-center gap-1 shadow-sm p-4 rounded-lg'>
+                                        <img src="" alt="" />
+                                        <div className='flex flex-col justify-start items-start gap-2'>
+                                            <h3 className='font-bold text-md'>Maturity Claim</h3>
+                                            <p className='text-sm'><CountUp start={0} end={114578560} duration={2.75} />+</p>
+                                        </div>
+                                    </div>
+
+                                    <div className='w-full bg-white flex flex-col justify-center items-center gap-1 shadow-sm p-4 rounded-lg'>
+                                        <img src="" alt="" />
+                                        <div className='flex flex-col justify-start items-start gap-2'>
+                                            <h3 className='font-bold text-md'>Health Claim</h3>
+                                            <p className='text-sm'><CountUp start={0} end={114578560} duration={2.75} />+</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        )
+                }
+
+
+
+
             </div>
+
 
         </div>
     );

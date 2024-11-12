@@ -10,6 +10,7 @@ import {
 import Root from './Root/Root.jsx';
 import ErrorPage from './ErrorPage/ErrorPage.jsx';
 import Home from './Home/Home.jsx';
+import LanguageContext from './contexts/LanguageContext.jsx';
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <LanguageContext>
+      <RouterProvider router={router} />
+    </LanguageContext>    
   </StrictMode>,
 )
