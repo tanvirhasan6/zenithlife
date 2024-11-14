@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { FaArrowLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { LangContext } from "../contexts/LanguageContext";
+import { LangContext } from "../../contexts/LanguageContext";
 
 
 const ErrorPage = () => {

@@ -1,11 +1,11 @@
 
 import { Link, NavLink } from 'react-router-dom';
-import logo from '../assets/logo.jpg'
+import logo from '../../assets/logo.jpg'
 import { FaLanguage } from 'react-icons/fa';
 import { CgMenuLeft } from 'react-icons/cg';
 import { useContext, useState } from 'react';
 import { RiCloseLargeFill } from 'react-icons/ri';
-import { LangContext } from '../contexts/LanguageContext';
+import { LangContext } from '../../contexts/LanguageContext';
 
 const Navbar = () => {
 
@@ -61,8 +61,8 @@ const Navbar = () => {
             <div className={`w-full min-h-3/6 ${dropdown ? 'flex' : 'hidden'} bg-slate-100 grid-cols-2 md:grid-cols-3 justify-around items-start z-10 fixed top-16 left-0 py-10 shadow-sm`}>
 
                 <div className='flex flex-col justify-start items-start gap-1'>
-                    <h5 className='font-bold text-lg'>About Us</h5>
-                    <a className="link link-hover">Branding</a>
+                    <h5 className='font-bold text-lg'>আমাদের সম্পর্কে</h5>
+                    <NavLink to="about">একনজরে</NavLink>
                     <a className="link link-hover">Design</a>
                     <a className="link link-hover">Marketing</a>
                     <a className="link link-hover">Advertisement</a>
