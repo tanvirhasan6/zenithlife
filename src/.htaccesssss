@@ -1,0 +1,7 @@
+RewriteEngine On
+RewriteBase /zenithlife/
+
+# Redirect all requests to index.html (except for files/folders that exist)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ zenithlfie/index.html [L]
